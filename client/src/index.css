@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Lato', system-ui, sans-serif;
+    background-color: #FAF6ED;
+    color: #2C1810;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+  }
+  ::selection {
+    background-color: #F0D080; /* gold-light */
+    color: #2C1810;
+  }
+  
+  /* Elegant Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FAF6ED; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E8D5B0; /* border color */
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C9973B; /* gold main */
+  }
+}
+
+@layer utilities {
+  .text-gold-shimmer {
+    background: linear-gradient(90deg, #C9973B 0%, #F0D080 40%, #C9973B 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2.5s linear infinite;
+  }
+  .border-scallop {
+    /* see ScallopedCard component for SVG implementation */
+  }
+  .section-padding {
+    @apply py-14 px-4 md:py-20 md:px-8 lg:px-16;
+  }
+}
