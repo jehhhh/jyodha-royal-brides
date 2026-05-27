@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Youtube, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 24, className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -67,10 +67,9 @@ const Footer = () => {
               {[
                 { icon: Instagram, href: "https://www.instagram.com/jyodharoyalbrides_/" },
                 { icon: Facebook, href: "https://www.facebook.com/people/Jyodha-Royal/61584735250368" },
-                { icon: Youtube, href: "https://youtube.com" },
                 { icon: WhatsAppIcon, href: whatsappLink },
               ].map(({ icon: Icon, href }, idx) => (
-                <a key={idx} href={href} target="_blank" rel="noreferrer" onClick={() => trackContactClick(idx === 3 ? 'whatsapp_social' : 'social')} className="w-10 h-10 rounded-full border border-gold/50 text-gold flex items-center justify-center hover:bg-gold hover:text-brown-dark hover:border-gold transition-all duration-300 hover:scale-110">
+                <a key={idx} href={href} target="_blank" rel="noreferrer" onClick={() => trackContactClick(idx === 2 ? 'whatsapp_social' : 'social')} className="w-10 h-10 rounded-full border border-gold/50 text-gold flex items-center justify-center hover:bg-gold hover:text-brown-dark hover:border-gold transition-all duration-300 hover:scale-110">
                   <Icon size={17} />
                 </a>
               ))}
@@ -115,11 +114,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-cream/70 text-sm">
                 <Phone size={18} className="text-gold flex-shrink-0" />
-                <a href={`tel:+919170171170`} onClick={() => trackContactClick('phone')} className="hover:text-gold transition-colors">+91 91701 71170</a>
+                <a href={`tel:+919170171170`} target="_blank" rel="noreferrer" onClick={() => trackContactClick('phone')} className="hover:text-gold transition-colors">+91 91701 71170</a>
               </li>
               <li className="flex items-center gap-3 text-cream/70 text-sm">
                 <Mail size={18} className="text-gold flex-shrink-0" />
-                <a href="mailto:jyodharoyalbrides@gmail.com" onClick={() => trackContactClick('email')} className="hover:text-gold transition-colors">jyodharoyalbrides@gmail.com</a>
+                <a href="mailto:jyodharoyalbrides@gmail.com" target="_blank" rel="noreferrer" onClick={() => trackContactClick('email')} className="hover:text-gold transition-colors">jyodharoyalbrides@gmail.com</a>
               </li>
             </ul>
             <a href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackContactClick('whatsapp_primary')} className="mt-6 inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-[#128C7E] transition-all duration-300 shadow-soft hover:shadow-lg hover:scale-105">

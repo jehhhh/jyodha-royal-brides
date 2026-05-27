@@ -129,6 +129,8 @@ const ContactSection = () => {
                   <Phone size={18} className="text-gold flex-shrink-0" />
                   <a 
                     href="tel:+919170171170" 
+                    target="_blank"
+                    rel="noreferrer"
                     className="hover:text-gold transition-colors font-medium tracking-wide"
                     onClick={() => {
                       if (typeof window !== 'undefined') {
