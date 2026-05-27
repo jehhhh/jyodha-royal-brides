@@ -52,18 +52,8 @@ const ContactSection = () => {
       formData.append('package', data.packageInterest || '');
       formData.append('source', data.hearAboutUs || '');
 
-      const scriptURL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-      
-      if (!scriptURL) {
-        console.warn("No VITE_GOOGLE_SCRIPT_URL found in .env. Faking submission for preview.");
-        await new Promise(r => setTimeout(r, 1500));
-      } else {
-        await fetch(scriptURL, { method: 'POST', body: formData });
-      }
-
-      // Fire Conversion Tracking Events
+      // 1. Fire Conversion Tracking Events Immediately (before fetch to ensure it records)
       if (typeof window !== 'undefined') {
-        // 1. Google Tag Manager (GTM) / Google Analytics Event
         if (window.dataLayer) {
           window.dataLayer.push({
             event: 'generate_lead',
@@ -71,14 +61,22 @@ const ContactSection = () => {
             package_interest: data.packageInterest || 'Custom'
           });
         }
-        
-        // 2. Meta / Facebook Pixel Event
         if (window.fbq) {
           window.fbq('track', 'Lead', {
             content_name: 'Bridal Consultation Enquiry',
             content_category: data.packageInterest || 'Custom'
           });
         }
+      }
+
+      const scriptURL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      
+      if (!scriptURL) {
+        console.warn("No VITE_GOOGLE_SCRIPT_URL found in .env. Faking submission for preview.");
+        await new Promise(r => setTimeout(r, 1500));
+      } else {
+        // Use no-cors to prevent Google Apps Script from throwing a CORS error
+        await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
       }
 
       setIsSuccess(true);
